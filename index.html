@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+<!--downloads charsets and p5.js libraries-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coloured Rectangle</title>
+    <script src="../p5.min.js"></script>
+    <script src="../addons/p5.dom.min.js"></script>
+    <script src="../addons/p5.sound.min.js"></script>
+    <script src="sketch.js"></script>
+    <!--sets font to sans-serif and ensures it is shown below canvas-->
+    <style> p {font-family: Arial, Helvetica, sans-serif; position: fixed; bottom: 80px;} </style>
+    <style> label {font-family: Arial, Tahoma, sans-serif; position: fixed; left: 572px;
+    font-size: x-small;}  </style>
+
+    <!--creates buttons at bottom of page-->
+    <button id="words" class = "button" style="position:fixed; bottom: 0px; left: 400px">surprise!</button>
+    <button id="nowords" class = "button" style="position:fixed; bottom: 0px; left: 100px">no text</button>
+    <button id="colour" class = "button" style="position:fixed; bottom: 0px; left: 200px">background colour</button>
+    <button id="thing" class = "button" style="position:fixed; bottom: 0px; left: 300px">no background</button>
+    <button id="instructions" class = "button" style="position:fixed; bottom: 0px;">instructions</button>
+
+
+    <!--creates radio buttons so the user can change the background to a specific colour-->
+    <form>
+        <input type="radio" name="fillcol" value="r1" id = r1 style="position:fixed; left: 550px; bottom: 20px"> </input>
+        <label for="r1"  style= "bottom: 22px"; >red</label>
+        <input type="radio" name="fillcol" value="b1" id = b1 style="position:fixed; left: 550px; bottom: 60px"> </input>
+        <label for="b1"  style= "bottom: 62px"; >blue</label>
+        <input type="radio" name="fillcol" value="g1" id = g1 style="position:fixed; left: 550px; bottom: 40px"> </input>
+        <label for="g1"  style= "bottom: 42px"; >green</label>
+    </form>
+    
+    <p id="demo"></p>
+    <!--adds event listeners so the buttons can do things, such as generate text or change object colours-->
+    <script>
+      //as many shapes will be made repeatedly, a shape class is created so the same chunk of code won't be constantly rewritten
+class Shape{
+  constructor(x,y,r,colour){
+    this.x=x;
+    this.y=y;
+    this.r=r;
+    this.colour=colour;
+  }
+    drawcircle() {
+      //following few lines of code taken from https://www.w3schools.com/tags/canvas_arc.asp-->
+      //draws a circle in a predefined position and fills it with a predefined colour
+      var c = document.getElementById("myCanvas");
+      var ctx = c.getContext("2d");
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI);
+        ctx.fillStyle = this.colour;
+        ctx.fill();
+    }
+  }
+  //radio button draws three 'reddish' circles and sets the background to completely red, using getters and setters
+       document.getElementById("r1").addEventListener("click", function(){
+        c1 = new Shape(30,30,20,"#FF0000");
+        c1.drawcircle();
+        c2 = new Shape(125,150, 20,"#FF02B0");
+        c2.drawcircle();
+        c3 = new Shape(50,250, 20, "#FFA410");
+        c3.drawcircle();
+        get; r;
+        get; g;
+        get; b;
+        set; r = 255;
+        set; g = 0;
+        set; b = 0;
+       });
+
+  //radio button draws three 'blueish' circles and sets the background to completely blue, using getters and setters
+       document.getElementById("b1").addEventListener("click", function(){
+        c1 = new Shape(70,80,20,"#C032FF");
+        c1.drawcircle();
+        c2 = new Shape(30,200, 20,"#10A1FF");
+        c2.drawcircle();
+        c3 = new Shape(50,140, 20, "#0215FF");
+        c3.drawcircle();
+        get; r;
+        get; g;
+        get; b;
+        set; r = 0;
+        set; g = 0;
+        set; b = 255;
+       });
+
+  //radio button draws three 'greenish' circles and sets the background to completely green, using getters and setters
+       document.getElementById("g1").addEventListener("click", function(){
+        c1 = new Shape(120,45,20,"#C0FF00");
+        c1.drawcircle();
+        c2 = new Shape(80,205, 20,"#10FF17");
+        c2.drawcircle();
+        c3 = new Shape(110,280, 20, "#00FF09");
+        c3.drawcircle();
+        get; r;
+        get; g;
+        get; b;
+        set; r = 0;
+        set; g = 255;
+        set; b = 0;
+       });
+
+      //the surprise button gives a little message all computer scientists can unfortunately relate to
+      document.getElementById("words").addEventListener("click", function(){
+      document.getElementById("demo").innerHTML = ("this is a feature not a bug") ;});
+
+      //a few sentences to explain how the page works
+      document.getElementById("instructions").addEventListener("click", function(){
+      document.getElementById("demo").innerHTML = ("Use the sliders to change the colour of the rectangle. Use the buttons to change background colour.") ;});
+
+      //removes any text revealed by previous buttons
+      document.getElementById("nowords").addEventListener("click", function(){
+      document.getElementById("demo").innerHTML = ("") ;});
+      
+      //generates another random background colour for the canvas
+      document.getElementById("colour").addEventListener("click", function(){
+        get; r = random(255);
+        get; g = random(255);
+        get; b = random(255);});
+      
+      //removes background colours and clears and and all circles drawn on the side canvas
+      document.getElementById("thing").addEventListener("click", function(){
+        var c = document.getElementById("myCanvas");
+        var ctx = c.getContext("2d");
+        ctx.clearRect(0,0,150,300);
+        get; r;
+        get; g;
+        get; b;
+        set; r = 255;
+        set; g = 255;
+        set; b = 255;
+        
+      });
+    </script>
+
+
+    <!--links to css page to make buttons look pretty-->
+    <link rel="stylesheet" type="text/css" href="mystyle.css">
+
+  </head>
+  <body>
+    <canvas id="myCanvas" width="150" height="350" style="border:1px solid #d3d3d3;"></canvas>
+      
+      <script>
+        //sets a little challenge in case the user gets bored!
+        //to further develop the code there could be an event occuring if the user manages to do this
+        var canvas = document.getElementById("myCanvas");
+        var ctx = canvas.getContext("2d")
+        ctx.font = "10px Arial";
+        ctx.fillText("See if you can match the", 10, 315);
+        ctx.fillText("rectangle colour to any of", 10, 330);
+        ctx.fillText("these circles!", 10, 345);
+      
+      
+      </script> 
+
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/" style="position:fixed; left: 800px; bottom: 0px">
+  <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/3.0/88x31.png" />
+</a>
+<p style="position:fixed; left: 800px; bottom: 40px" >This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a></p>
+  </body>
+</html>

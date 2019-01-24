@@ -1,0 +1,25 @@
+.button {
+    background-color: #3fe4ce;
+    border-style: solid;
+    border-color: white;
+    border-width: 5px;
+    color:whitesmoke;
+    position: relative;
+    width: 104px;
+    height: 64px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+  }
+
+  .button:hover {background-color: #a9d8d2}
+
+  .button:active {background-color: #c4faf3}
+
+  .text {
+    color: red;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  
